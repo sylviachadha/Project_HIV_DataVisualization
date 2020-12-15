@@ -8,10 +8,7 @@ function TopMenu() {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">HIVRecencyDashboard</Navbar.Brand>
                 <Nav className="mr-auto">
-                    <Nav.Link href="/new-hiv">NewHIVDiagnosis</Nav.Link>
-                    <Nav.Link href="/demographic">Demographic/Behavioral</Nav.Link>
-                    <Nav.Link href="/hotspot">HotspotLocations</Nav.Link>
-                    <Nav.Link href="/partner">IndexPartnerTest</Nav.Link>
+                    {/*<Nav.Link href="/new-hiv">NewHIVDiagnosis</Nav.Link>*/}
                 </Nav>
             </Navbar>
 

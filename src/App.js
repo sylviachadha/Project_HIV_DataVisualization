@@ -1,32 +1,44 @@
 import React from "react";
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
-import NewHivDiagnosis from "./components/NewHivDiagnosis";
-import Demographic from "./components/Demographic";
-import Partner from "./components/Partner";
+import TestingSite from "./components/TestingSite";
 import TopMenu from "./components/TopMenu";
-import HotspotLocations from "./components/HotspotLocations";
+import VerticalMenu from "./components/VerticalMenu";
+import {makeStyles} from "@material-ui/core/styles";
+import Overview from "./components/Overview";
 
+const useStyles = makeStyles((theme) => ({
+    verticalMenu: {
+        display: "inline-block",
+        height: "100%",
+        width: "300px",
+    },
+    plots: {
+        display: "inline-block",
+    }
+}));
 
 function App() {
+    const classes = useStyles();
+
+
     return (
         <BrowserRouter>
-            <Grid container spacing={3}>
-                <Grid item xs={12}>
-                    <TopMenu/>
-                </Grid>
-            </Grid>
-            <Switch>
-                {/*/new-hiv is link, if u click on this link NewHivDiagnosis Page will open*/}
-                <Route path="/new-hiv" component={NewHivDiagnosis}/>
-                <Route path="/demographic" component={Demographic}/>
-                <Route path="/partner" component={Partner}/>
-                <Route path="/hotspot" component={HotspotLocations}/>
-                <Route path="/" component={Demographic}/>
+
+            <TopMenu/>
+
+            <div className={classes.verticalMenu}>
+                <VerticalMenu/>
+            </div>
 
 
-            </Switch>
-
+            <div className={classes.plots}>
+                <Switch>
+                    {/*/new-hiv is link, if u click on this link TestingSite Page will open*/}
+                    <Route path="/overview" component={Overview} exact/>
+                    <Route path="/by-site" component={TestingSite} exact/>
+                    <Route path="/" component={Overview}/>
+                </Switch>
+            </div>
 
         </BrowserRouter>
     );
