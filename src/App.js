@@ -4,15 +4,25 @@ import TestingSite from "./components/TestingSite";
 import TopMenu from "./components/TopMenu";
 import VerticalMenu from "./components/VerticalMenu";
 import {makeStyles} from "@material-ui/core/styles";
-import Overview from "./components/Overview";
+import rec_overview from "./components/recencyReport/Overview";
+import demo_gender from "./components/demographic/Gender";
+import demo_status from "./components/demographic/Status";
+import demo_age from "./components/demographic/Age";
+import behaviour_risk from "./components/behaviour/risk";
+import geo_site from "./components/geographic/site";
+import partner_hiv from "./components/partnertest/outcome";
+
 
 const useStyles = makeStyles((theme) => ({
+
     verticalMenu: {
         display: "inline-block",
-        height: "100%",
+        position: "absolute",
+        height: "100vh",
         width: "300px",
     },
     plots: {
+        marginLeft:"20em",
         display: "inline-block",
     }
 }));
@@ -24,7 +34,7 @@ function App() {
     return (
         <BrowserRouter>
 
-            <TopMenu/>
+                <TopMenu/>
 
             <div className={classes.verticalMenu}>
                 <VerticalMenu/>
@@ -34,9 +44,14 @@ function App() {
             <div className={classes.plots}>
                 <Switch>
                     {/*/new-hiv is link, if u click on this link TestingSite Page will open*/}
-                    <Route path="/overview" component={Overview} exact/>
-                    <Route path="/by-site" component={TestingSite} exact/>
-                    <Route path="/" component={Overview}/>
+                    <Route path="/overview" component={rec_overview} exact/>
+                    <Route path="/by-gender" component={demo_gender} exact/>
+                    <Route path="/by-status" component={demo_status} exact/>
+                    <Route path="/by-age" component={demo_age} exact/>
+                    <Route path="/by-risk" component={behaviour_risk} exact/>
+                    <Route path="/by-site" component={geo_site} exact/>
+                    <Route path="/by-outcome" component={partner_hiv} exact/>
+                    <Route path="/" component={rec_overview}/>
                 </Switch>
             </div>
 

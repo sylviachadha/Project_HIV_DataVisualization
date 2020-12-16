@@ -1,21 +1,18 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder  from '@material-ui/icons/StarBorder';
-import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
-import { white } from '@material-ui/core/colors';
-import {Link} from "react-router-dom";
+import StarBorder from '@material-ui/icons/StarBorder';
 
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import AssessmentIcon from '@material-ui/icons/Assessment';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,111 +31,130 @@ export default function VerticalMenu() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
 
-    const handleClick = () => {
-        setOpen(!open);
+
+    const [openRecency, setOpenRecency] = React.useState(true);
+
+
+    const handleRecencyClick = () => {
+        setOpenRecency(!openRecency);
     };
 
     return (
-        <List component="nav"  className={classes.root}>
+        <List component="nav" className={classes.root}>
 
-            <ListItem button onClick={handleClick}>
+            <ListItem button onClick={handleRecencyClick}>
                 <ListItemIcon>
-                    <InboxIcon style={{ color: '#fff' }}/>
+                    <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
-                <ListItemText primary="Recency Report" />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                <ListItemText primary="Recency Report"/>
+                {openRecency ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={openRecency} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
                     <ListItem button component="a" href="/overview" className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
+                            <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
-                        <ListItemText primary="Overview" />
+                        <ListItemText primary="Overview"/>
+                    </ListItem>
+
+                </List>
+            </Collapse>
+
+
+            <ListItem button onClick={{}}>
+                <ListItemIcon>
+                    <AssessmentIcon style={{color: '#fff'}}/>
+                </ListItemIcon>
+                <ListItemText primary="Demographic"/>
+                {open ? <ExpandLess/> : <ExpandMore/>}
+            </ListItem>
+
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <ListItem button component="a" href="/by-gender" className={classes.nested}>
+                        <ListItemIcon>
+                            <PlayArrowIcon style={{color: '#fff'}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="By Gender"/>
+                    </ListItem>
+                    <ListItem button component="a" href="/by-status" className={classes.nested}>
+                        <ListItemIcon>
+                            <PlayArrowIcon style={{color: '#fff'}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="By Marital status"/>
+                    </ListItem>
+                    <ListItem button component="a" href="/by-age" className={classes.nested}>
+                        <ListItemIcon>
+                            <PlayArrowIcon style={{color: '#fff'}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="By Age"/>
+                    </ListItem>
+                </List>
+            </Collapse>
+
+
+            <ListItem button onClick={{}}>
+                <ListItemIcon>
+                    <AssessmentIcon style={{color: '#fff'}}/>
+                </ListItemIcon>
+                <ListItemText primary="Behaviour"/>
+                {open ? <ExpandLess/> : <ExpandMore/>}
+            </ListItem>
+
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <ListItem button component="a" href="/by-risk" className={classes.nested}>
+                        <ListItemIcon>
+                            <PlayArrowIcon style={{color: '#fff'}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="By Transmission Risk"/>
+                    </ListItem>
+
+                </List>
+            </Collapse>
+
+            <ListItem button onClick={{}}>
+                <ListItemIcon>
+                    <AssessmentIcon style={{color: '#fff'}}/>
+                </ListItemIcon>
+                <ListItemText primary="Geographic"/>
+                {open ? <ExpandLess/> : <ExpandMore/>}
+            </ListItem>
+
+            <Collapse in={open} timeout="auto" unmountOnExit>
+                <List component="div" disablePadding>
+                    <ListItem button className={classes.nested}>
+                        <ListItemIcon>
+                            <PlayArrowIcon style={{color: '#fff'}}/>
+                        </ListItemIcon>
+                        <ListItemText primary="By Area"/>
                     </ListItem>
                     <ListItem button component="a" href="/by-site" className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
+                            <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
-                        <ListItemText primary="By testing sites" />
+                        <ListItemText primary="By Testing Site"/>
                     </ListItem>
                 </List>
             </Collapse>
 
-
-            <ListItem button onClick={handleClick}>
+            <ListItem button onClick={{}}>
                 <ListItemIcon>
-                    <InboxIcon style={{ color: '#fff' }} />
+                    <AssessmentIcon style={{color: '#fff'}}/>
                 </ListItemIcon>
-                <ListItemText primary="Demographic" />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                <ListItemText primary="Partner Test"/>
+                {open ? <ExpandLess/> : <ExpandMore/>}
             </ListItem>
 
             <Collapse in={open} timeout="auto" unmountOnExit>
                 <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
+                    <ListItem button component="a" href="/by-outcome" className={classes.nested}>
                         <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
+                            <PlayArrowIcon style={{color: '#fff'}}/>
                         </ListItemIcon>
-                        <ListItemText primary="By gender" />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                        <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="By marital status" />
-                    </ListItem>
-                    <ListItem button className={classes.nested}>
-                        <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="By age" />
-                    </ListItem>
-                </List>
-            </Collapse>
-
-            <ListItem button>
-                <ListItemIcon>
-                    <InboxIcon style={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="Behaviour" />
-            </ListItem>
-
-            <ListItem button onClick={handleClick}>
-                <ListItemIcon>
-                    <InboxIcon style={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="Geographic" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                        <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="By Area" />
-                    </ListItem>
-                </List>
-            </Collapse>
-
-            <ListItem button onClick={handleClick}>
-                <ListItemIcon>
-                    <InboxIcon style={{ color: '#fff' }} />
-                </ListItemIcon>
-                <ListItemText primary="Partner" />
-                {open ? <ExpandLess /> : <ExpandMore />}
-            </ListItem>
-
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItem button className={classes.nested}>
-                        <ListItemIcon>
-                            <StarBorder style={{ color: '#fff' }} />
-                        </ListItemIcon>
-                        <ListItemText primary="Recency Test" />
+                        <ListItemText primary="HIV Test Outcome"/>
                     </ListItem>
                 </List>
             </Collapse>
